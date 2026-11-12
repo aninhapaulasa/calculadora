@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Calculadora JS</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <main class="calculadora">
+
+    <!-- CABEÇALHO -->
+    <header class="tema-container">
+
+      <h1>Calculadora JS</h1>
+
+      <button
+        id="alternar-tema"
+        type="button"
+        aria-label="Alternar tema"
+      >
+        ☀️
+      </button>
+
+    </header>
+
+    <!-- DISPLAY -->
+    <div class="display-container">
+    <div id="expressao" aria-live="polite"></div>
+
+    <input
+        id="display"
+        type="text"
+        value="0"
+        readonly
+        aria-label="Número atual ou resultado"
+    >
+    </div>
+
+
+    <!-- TECLAS -->
+    <div class="teclas">
+
+      <!-- Linha 1 -->
+      <button data-acao="limpar">C</button>
+      <button data-acao="apagar">⌫</button>
+      <button data-acao="porcentagem">%</button>
+      <button data-operador="/">÷</button>
+
+      <!-- Linha 2 -->
+      <button data-numero="7">7</button>
+      <button data-numero="8">8</button>
+      <button data-numero="9">9</button>
+      <button data-operador="*">×</button>
+
+      <!-- Linha 3 -->
+      <button data-numero="4">4</button>
+      <button data-numero="5">5</button>
+      <button data-numero="6">6</button>
+      <button data-operador="-">−</button>
+
+      <!-- Linha 4 -->
+      <button data-numero="1">1</button>
+      <button data-numero="2">2</button>
+      <button data-numero="3">3</button>
+      <button data-operador="+">+</button>
+
+      <!-- Linha 5 -->
+      <button
+        data-numero="0"
+        class="zero"
+      >
+        0
+      </button>
+
+      <button data-numero=".">.</button>
+
+      <button
+        data-acao="igual"
+        class="igual"
+      >
+        =
+      </button>
+
+    </div>
+
+    <!-- HISTÓRICO -->
+    <section class="historico">
+
+      <div class="historico-topo">
+
+        <h2>Histórico</h2>
+
+        <button
+          id="limpar-historico"
+          type="button"
+        >
+          Limpar
+        </button>
+
+      </div>
+
+      <ul id="lista-historico"></ul>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,464 @@
+
+/* ========================================
+   1. RESET GLOBAL
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   2. VARIÁVEIS - TEMA ESCURO
+======================================== */
+
+:root {
+  --cor-fundo: #0f172a;
+  --cor-calculadora: #1e293b;
+  --cor-display: #334155;
+  --cor-botao: #475569;
+  --cor-hover: #64748b;
+  --cor-texto: #ffffff;
+  --cor-borda: #475569;
+
+  --cor-operador: #d97706;
+  --cor-igual: #16a34a;
+  --cor-limpar: #dc2626;
+  --cor-pressionado: #60a5fa;
+
+  --sombra: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   3. VARIÁVEIS - TEMA CLARO
+======================================== */
+
+body.tema-claro {
+  --cor-fundo: #e2e8f0;
+  --cor-calculadora: #f8fafc;
+  --cor-display: #ffffff;
+  --cor-botao: #cbd5e1;
+  --cor-hover: #94a3b8;
+  --cor-texto: #0f172a;
+  --cor-borda: #cbd5e1;
+
+  --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   4. BODY
+======================================== */
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+
+  transition: background 0.3s ease,
+              color 0.3s ease;
+}
+
+/* ========================================
+   5. CALCULADORA
+======================================== */
+
+.calculadora {
+  width: 100%;
+  max-width: 380px;
+
+  padding: 20px;
+  margin: 0 auto;
+
+  border-radius: 16px;
+
+  background: var(--cor-calculadora);
+  box-shadow: var(--sombra);
+
+  transition: background 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* ========================================
+   6. CABEÇALHO E TEMA
+======================================== */
+
+.tema-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.tema-container h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+#alternar-tema {
+  padding: 10px 12px;
+  font-size: 20px;
+
+  background: var(--cor-botao);
+  color: var(--cor-texto);
+}
+
+#alternar-tema:hover {
+  background: var(--cor-hover);
+}
+
+/* ========================================
+   7. DISPLAY
+======================================== */
+
+#display {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 20px;
+  margin-bottom: 15px;
+
+  border: none;
+  border-radius: 8px;
+  outline: none;
+
+  background: var(--cor-display);
+  color: var(--cor-texto);
+
+  font-size: clamp(24px, 6vw, 36px);
+  font-weight: 500;
+  text-align: right;
+
+  font-variant-numeric: tabular-nums;
+
+  transition: background 0.3s ease,
+              color 0.3s ease;
+}
+
+/* ========================================
+   8. GRID DE TECLAS
+======================================== */
+
+.teclas {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+/* ========================================
+   9. BOTÕES GERAIS
+======================================== */
+
+button {
+  min-width: 0;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: var(--cor-botao);
+  color: var(--cor-texto);
+
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  touch-action: manipulation;
+
+  transition: background 0.12s ease,
+              transform 0.12s ease,
+              box-shadow 0.12s ease;
+}
+
+button:hover {
+  background: var(--cor-hover);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--cor-pressionado);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   10. BOTÕES DA CALCULADORA
+======================================== */
+
+.teclas button {
+  min-height: 55px;
+  padding: 12px 4px;
+}
+
+/* Operadores */
+
+.teclas button[data-operador] {
+  background: var(--cor-operador);
+  color: #ffffff;
+}
+
+.teclas button[data-operador]:hover {
+  background: #f59e0b;
+}
+
+/* Botão igual */
+
+.teclas .igual {
+  grid-row: auto;
+  background: var(--cor-igual);
+  color: #ffffff;
+}
+
+.teclas .zero {
+  grid-column: span 2;
+}
+
+
+.teclas .igual:hover {
+  background: #22c55e;
+}
+
+/* Botão zero */
+
+.teclas .zero {
+  grid-column: span 2;
+}
+
+/* Botão limpar */
+
+.teclas button[data-acao="limpar"] {
+  background: var(--cor-limpar);
+  color: #ffffff;
+}
+
+.teclas button[data-acao="limpar"]:hover {
+  background: #ef4444;
+}
+
+/* ========================================
+   11. EFEITO DE TECLA PRESSIONADA
+======================================== */
+
+.teclas button.pressionado,
+.teclas button:active {
+  background: var(--cor-pressionado);
+  color: #0f172a;
+
+  transform: scale(0.92);
+
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.5);
+}
+
+/* ========================================
+   12. HISTÓRICO
+======================================== */
+
+.historico {
+  margin-top: 20px;
+  padding-top: 15px;
+
+  border-top: 1px solid var(--cor-borda);
+}
+
+.historico-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.historico h2 {
+  color: var(--cor-texto);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Botão limpar histórico */
+
+#limpar-historico {
+  padding: 8px 12px;
+
+  background: var(--cor-limpar);
+  color: #ffffff;
+
+  font-size: 12px;
+}
+
+#limpar-historico:hover {
+  background: #ef4444;
+}
+
+/* ========================================
+   13. LISTA DO HISTÓRICO
+======================================== */
+
+#lista-historico {
+  list-style: none;
+
+  max-height: 180px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#lista-historico li {
+  padding: 10px;
+  margin-bottom: 8px;
+
+  border-radius: 6px;
+
+  background: var(--cor-display);
+  color: var(--cor-texto);
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+/* Barra de rolagem */
+
+#lista-historico::-webkit-scrollbar {
+  width: 6px;
+}
+
+#lista-historico::-webkit-scrollbar-thumb {
+  background: var(--cor-hover);
+  border-radius: 10px;
+}
+
+/* Display com expressão e resultado */
+
+.display-container {
+  background: var(--cor-display);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  min-width: 0;
+}
+
+#expressao {
+  min-height: 24px;
+  color: var(--cor-texto);
+  opacity: 0.7;
+  font-size: 16px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.display-container #display {
+  background: transparent;
+  padding: 8px 0 0;
+  margin-bottom: 0;
+  font-size: clamp(24px, 6vw, 36px);
+  width: 100%;
+}
+
+
+/* ========================================
+   14. RESPONSIVIDADE - CELULARES
+======================================== */
+
+@media (max-width: 480px) {
+
+  body {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .calculadora {
+    width: 100%;
+    max-width: 380px;
+
+    padding: 16px;
+    margin: 12px auto;
+  }
+
+  .tema-container h1 {
+    font-size: 16px;
+  }
+
+  #display {
+    padding: 16px;
+  }
+
+  .teclas {
+    gap: 8px;
+  }
+
+  .teclas button {
+    min-height: 60px;
+    font-size: 22px;
+  }
+
+  .historico {
+    margin-top: 16px;
+  }
+}
+
+/* ========================================
+   15. TELAS MUITO PEQUENAS
+======================================== */
+
+@media (max-width: 350px) {
+
+  body {
+    padding: 8px;
+  }
+
+  .calculadora {
+    padding: 12px;
+  }
+
+  .teclas {
+    gap: 6px;
+  }
+
+  .teclas button {
+    min-height: 50px;
+    font-size: 18px;
+  }
+
+  #display {
+    padding: 12px;
+    font-size: 26px;
+  }
+
+  .tema-container h1 {
+    font-size: 15px;
+  }
+}
+
+/* ========================================
+   16. ACESSIBILIDADE
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
